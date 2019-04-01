@@ -1,0 +1,51 @@
+{%extends 'all-proposts/base.html'%}
+
+{% block content %}
+{{block.super}}
+
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<br>
+<div class="container">
+  <body style="background-color:#FCFDFE; ">
+    <img src="{{profile.profile_photo.url}}" class="radius" class="img-responsive" alt="Image" style="width:100px; height:100px; border-radius:50%; float: right; margin-left:-500px">
+    <br>
+    <br>
+    <br>
+    <br>
+ <h1 style="text-align:right; color:beige;margin-left:50px; font-family:'Indie Flower', cursive;"><b>My profile</b></h1> 
+
+  <div style="color:beige;" >
+    
+ 
+                    <h1 style="text-align:right; font-family:'Indie Flower', cursive;"><b>{{profile.user}}</b></h1>
+                   
+                
+    <p style="font-size:20px; text-align:right; font-family:'Indie Flower', cursive;"><b><q>{{profile.bio}}</q></b></p>
+
+ 
+  
+</div>
+<br>
+
+
+
+  
+  <p class="text-center" style="font-size:60px; color:beige; font-family:'Indie Flower', cursive;"><b>my posts</b></p>
+  <div class="row">
+    {% for photo in photos %}
+    <div class="col-md-6 container" >
+
+      <img src="{{photo.image.url}}" class="img-responsive" alt="Image" height="800px" height="800px" style="border:1px solid beige"><br><br>
+
+    </div>
+    {% empty %}
+    <h2 class="text-center">There are no photos yet</h2>
+
+    {% endfor %}
+  
+</div>
+
+</body>
+</div>
+{% endblock %}
+</div>

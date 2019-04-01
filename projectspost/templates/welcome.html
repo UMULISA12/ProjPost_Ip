@@ -1,0 +1,62 @@
+{%extends 'all-proposts/base.html'%}
+
+{% block content %}
+{{block.super}}
+
+<br>
+<link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Gloria+Hallelujah" rel="stylesheet">
+
+<div class="container-fluid">
+  
+<body>
+
+  <!-- <div class="row">
+    <div class="col-md-6"> -->
+   
+    <h1 style="background-color:#c2d6d6; color:#3d5c5c; font-size:70px; text-align:center; font-family: 'Baloo Chettan', cursive; font-family: 'Gloria Hallelujah', cursive; margin-left:100px; margin-right:100px; "><b>Welcome to instagram application..</b></h1>
+    <br>
+    <br>
+<!-- </div>
+</div> -->
+
+<div class="row" style="margin-left:80px;">
+  
+  {% for photo in photos %}
+  <div class="col-md-3 container" >
+
+        <div class="panel panel-default" style="width:300px;">
+      <div class="panel panel-header">
+      <p>  <img src="{{photo.profile_photo.url}}">
+      <strong>{{photo.profile}}</strong></p>
+    </div>
+      <div class="panel panel-body">
+
+        <!-- <div style="padding-left:40px;"> -->
+      <a href="{% url 'imagedetails' photo.id %}">  <img src="{{photo.image.url}}" class="img-responsive" alt="Image" style="width:400px;height:400px;"></a>
+      <!-- </div> -->
+
+      <h4 class="btn btn-lg"><i class="glyphicon glyphicon-heart" style="font-size:24px;color:rgb(43, 89, 133);"></i></h4>{{photo.likes}}
+          <a href="{%url 'new-comment'%}"> <h4 class="btn btn-lg" ><i class="glyphicon glyphicon-comment" style="font-size:24px;color:rgb(43, 89, 133);"></i> </h4> </a>{{photo.comments}}
+
+          <br>
+
+      <p>{{photo.caption}}</p>
+    </div>
+
+
+
+    </div>
+
+  </div>
+  {% empty %}
+  <h2 class="text-center">There are no photos yet</h2>
+
+  {% endfor %}
+
+<!-- </div> -->
+</body>
+</div>
+
+{% endblock %}
+
+</div>

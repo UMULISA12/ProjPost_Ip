@@ -1,0 +1,58 @@
+{%extends 'all-proposts/base.html'%}
+
+
+
+{% block content %}
+<br>
+<br>
+<link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Gloria+Hallelujah" rel="stylesheet">
+ <div class="container">
+   <body>
+<h1 style="text-align:center; font-family:'Baloo Chettan', cursive; font-family: 'Gloria Hallelujah', cursive; color: beige; "><b>Post details</b></h1>
+<br>
+<br>
+
+     <div class="row">
+       <div class=col-md-4>
+     <img src="{{image.image.url}}"  class="img-responsive" width="500px" height="500px" style="border:2px solid beige;">
+   </div>
+
+   <div class=col-md-4>
+
+      <strong style="font-family:'Baloo Chettan', cursive; font-family: 'Gloria Hallelujah', cursive; color: beige;">{{image.profile}}</strong>
+     {% autoescape on %}
+   <p  style="font-family:'Baloo Chettan', cursive; font-family: 'Gloria Hallelujah', cursive; color: beige;" > {{image.caption| safe}}</p> 
+    {% endautoescape %}
+    <br>
+
+    <strong style="font-family:'Baloo Chettan', cursive; font-family: 'Gloria Hallelujah', cursive; color: beige;">Comments</strong>
+
+    {% for comment in comments %}
+
+    <ul>
+
+    <p><li style="font-family:'Baloo Chettan', cursive; font-family: 'Gloria Hallelujah', cursive; color: beige;">{{comment.comment}}</p></li>
+
+  </ul>
+
+
+    {% endfor %}
+    <br>
+   <h4 class="btn btn-lg"><i class="glyphicon glyphicon-heart" style="font-size:24px;color:rgb(43, 89, 133);"></i></h4>  {{image.likes}}
+
+  </div>
+
+  </div>
+
+   <div class="row">
+     <h1 class="text-center" style="font-family:'Baloo Chettan', cursive; font-family: 'Gloria Hallelujah', cursive; color: beige;">{{image.name}}</h1>
+   </div>
+
+
+
+
+</body>
+</div>
+
+
+ {% endblock %}
