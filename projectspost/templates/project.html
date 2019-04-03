@@ -3,7 +3,7 @@
  {% block content %}
  <div class="container">
    <div class="row">
-     <h1 class="text-center">{{project.project}}</h1>
+     <h1 class="text-center" style="color:beige;">{{project.project}}</h1>
    </div>
    <!-- <hr> -->
 
@@ -32,12 +32,14 @@
      </div>
      <div class="col-md-6 text-center">
 
-       <b><p class = "text-center"> <a href="{{project.link}}">{{project.link}}</a></p>
-       <p>{{project.description}}</p>
+       <b><p class = "text-center"> <a href="{{project.link}}" style="color:beige;">{{project.link}}</a></p>
+        <br>
+       <p style="color:beige;">{{project.description}}</p>
+       <br>
        <button type="button" name="button"> <a href="/project-vote/{{project.id}}"> vote</a></button>
        </b>
      </div>
-     <div class="col-md-3">
+     <!-- <div class="col-md-3">
      </div>
    </div>
    <br><br>
@@ -61,7 +63,7 @@
 
 
      </div>
-   </div>
+   </div> -->
 
 
  </div>

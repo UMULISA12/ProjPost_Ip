@@ -1,3 +1,4 @@
+<img src="https://images.pexels.com/photos/56759/pexels-photo-56759.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
 {%extends 'all-proposts/base.html'%}
 {% load bootstrap3 %}
 {% load staticfiles %}
@@ -7,20 +8,12 @@
 {{block.super}}
 <div class="container">
   <div class="row">
-      <!-- <img src="../static/backlit-clouds-dark-533877.jpg"  class="img-responsive" class="pic" alt="image">
-      <style>
-        .pic{
-          height: 500px;
-          width: 1150px;
-        }
-      </style> -->
-
 
   <div class="row">
     {% for post in projects %}
     <div class="col-xs-6 col-sm-8 col-md-4 col-lg-4 ">
-      <h3 class="text-center"> {{post.title}}</h3>
-      <a href="{% url 'projects' post.id %}"><img src="{{post.image.url}}" class="img-responsive" alt="Project" ></a>
+      <h3 class="text-center" style="color:beige;"> {{post.title}}</h3>
+      <a href="{% url 'projects' post.id %}"><img src="{{post.image.url}}" class="img-responsive" alt="Project" width="250px" height="250px"></a>
 
     </div>
     {% endfor %}

@@ -42,6 +42,7 @@ def project(request,project_id):
 
 
 
+
 @login_required(login_url='/accounts/login/')
 def new_project(request):
     current_user = request.user
@@ -59,70 +60,61 @@ def new_project(request):
 
 
 
-def vote_project(request, project_id):
-    # project = Project.objects.get(id=project_id)
-    # rating = round(((project.design + project.usability + project.content)/3),2)
-    # if request.method == 'POST':
-    #     form = VoteForm(request.POST)
-    #     if form.is_valid:
-    #         if project.design == 1:
-    #             project.design = int(request.POST['design'])
-    #         else:
-    #             project.design = (project.design + int(request.POST['design']))/2
-    #         if project.usability == 1:
-    #             project.usability = int(request.POST['usability'])
-    #         else:
-    #             project.usability = (project.design + int(request.POST['usability']))/2
-    #         if project.content == 1:
-    #             project.content = int(request.POST['content'])
-    #         else:
-    #             project.content = (project.design + int(request.POST['content']))/2
-    #         project.save()
-    # else:
-    #     form = VoteForm()
-    # return render(request,'vote.html',{'form':form,'project':project,'rating':rating})
+# def vote_project(request, project_id):
+#     project = Project.objects.get(id=project_id)
+#     rating = round(((project.design + project.usability + project.content)/3),2)
+#     if request.method == 'POST':
+#         form = VoteForm(request.POST)
+#         if form.is_valid:
+#             if project.design == 1:
+#                 project.design = int(request.POST['design'])
+#             else:
+#                 project.design = (project.design + int(request.POST['design']))/2
+#             if project.usability == 1:
+#                 project.usability = int(request.POST['usability'])
+#             else:
+#                 project.usability = (project.design + int(request.POST['usability']))/2
+#             if project.content == 1:
+#                 project.content = int(request.POST['content'])
+#             else:
+#                 project.content = (project.design + int(request.POST['content']))/2
+#             project.save()
+#     else:
+#         form = VoteForm()
+#     return render(request,'vote.html',{'form':form,'project':project,'rating':rating})
 
 
-def create_prfle(request):
+def profile(request):
+    current_user=request.user
+    photos=Image.objects.filter(profile=current_user)
+    try:
+        profile = Profile.objects.get(user=current_user)
+    except ObjectDoesNotExist:
+        return redirect('create-profile')
+
+    return render(request,'profile.html',{"photos":photos,"profile":profile})
+
+
+
+
+
+def edit_profile(request):
     current_user=request.user
     if request.method == 'POST':
         form =NewProfileForm(request.POST,request.FILES)
         if form.is_valid():
             profile=form.save(commit=False)
             profile.user = current_user
-            profile.save()
+            profile.update()
         return redirect('profile')
     else:
         form=NewProfileForm()
-    return render(request,'profile-create.html',{"form":form})
+    return render(request,'edit_profile.html',{"form":form})
 
 
 
-def profile(request):
-    current_user = request.user
-    projects = Project.objects.filter(profile=current_user).all()
-    profile = Profile.objects.filter(profile=current_user)
-
-    if len(profile)<1:
-        profile = "No profile"
-    else:
-        profile = Profile.objects.get(profile=current_user)
-
-    return render(request, 'profile.html',{'projects':projects,'profile':profile})
 
 
-def edit_profile(request):
-    current_user = request.user
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            profile = form.save(commit = False)
-            profile.project = current_user
-            profile.save()
-        return redirect('Profile')
-    else:
-        form = ProfileForm()
-    return render(request,'edit_profile.html',{'form':form})
 
 def search_results(request):
 

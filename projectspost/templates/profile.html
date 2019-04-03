@@ -6,46 +6,49 @@
 <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 <br>
 <div class="container">
+    {% for prof in profile %}
   <body style="background-color:#FCFDFE; ">
-    
-    <img src="{{profile.profile_photo.url}}" class="radius" class="img-responsive" alt="Image" style="width:100px; height:100px; border-radius:50%; float: right; margin-left:-500px">
+    <img src="{{prof.photo.url}}" class="radius" class="img-responsive" alt="Image" style="width:100px; height:100px; border-radius:50%; float: right; margin-left:-500px">
     <br>
     <br>
     <br>
     <br>
- <h1 style="text-align:right; color:beige;margin-left:50px; font-family:'Indie Flower', cursive;"><b>My profile</b></h1> 
+ <h1 style="text-align:right; color:beige;margin-left:50px; font-family:'Indie Flower', cursive;"><b>My prof</b></h1> 
 
   <div style="color:beige;" >
     
  
-                    <h1 style="text-align:right; font-family:'Indie Flower', cursive;"><b>{{profile.user}}</b></h1>
+                    <h1 style="text-align:right; font-family:'Indie Flower', cursive;"><b>{{prof.user}}</b></h1>
                    
                 
-    <p style="font-size:20px; text-align:right; font-family:'Indie Flower', cursive;"><b><q>{{profile.bio}}</q></b></p>
+    <p style="font-size:20px; text-align:right; font-family:'Indie Flower', cursive;"><b><q>{{prof.bio}}</q></b></p>
 
  
   
 </div>
 <br>
-      <br><br><br><br><br>
-      <h1 style="text-align:center; color:beige;margin-left:50px; font-family:'Indie Flower', cursive;"><b>Your projects</b></h1>
-      <br>
-        <div class="row">
-          {% for project in projects %}
 
-          <div class="col-md-4">
-            <img  src="{{project.image.url}}" class="radius" alt="Project" class="img-responsive">
-            <style>
-              .radius{
-                height: 250px;
-                width: 250px;
-              }
-            </style>
-          </div>
-          {% endfor%}
-
-        </div>
+{% endfor %}
 
 
+  
+  <p class="text-center" style="font-size:60px; color:beige; font-family:'Indie Flower', cursive;"><b>my posts</b></p>
+  <div class="row">
+
+      {% for post in projects %}
+      <div class="col-xs-6 col-sm-8 col-md-4 col-lg-4 ">
+        <h3 class="text-center" style="color:beige;"> {{post.title}}</h3>
+        <a href="{% url 'projects' post.id %}"><img src="{{post.image.url}}" class="img-responsive" alt="Project" width="250px" height="250px"></a>
+  
+      </div>
+    {% empty %}
+    <h2 class="text-center">There are no photos yet</h2>
+
+    {% endfor %}
+  
+</div>
+
+</body>
 </div>
 {% endblock %}
+</div>
