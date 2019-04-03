@@ -1,17 +1,17 @@
-from .models import Image,Profile,Comment
 from django import forms
+from .models import Project,Profile
 
-class NewImageForm(forms.ModelForm):
+class NewProjectForm(forms.ModelForm):
     class Meta:
-        model=Image
-        exclude=['profile','pub_date','name','likes','comments']
+        model = Project
+        exclude = ['profile','usability','design','content']
 
 class NewProfileForm(forms.ModelForm):
     class Meta:
-        model=Profile
-        exclude=['user']
+        model = Profile
 
-class NewCommentForm(forms.ModelForm):
+        exclude = ['profile']
+class VoteForm(forms.ModelForm):
     class Meta:
-        model = Comment
-        exclude = ['commenter']
+        model = Project
+        exclude = ['link','description','profile','image','title']

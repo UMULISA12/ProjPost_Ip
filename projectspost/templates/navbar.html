@@ -1,73 +1,61 @@
-<nav class="navbar navbar-inverse" style="background-color:#c2d6d6;">
-    <div class="container-fluid">
-        <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan" rel="stylesheet">
-      <div class="navbar-header">
-       
-        <img src="https://image.flaticon.com/icons/png/512/109/109404.png" width="40px" height="40px" style="float:left; margin-right:10px; margin-top:5px;">
-        <a class="navbar-brand" href="{% url 'welcome' %}" style="font-size:50px; font-family:'Baloo Chettan', cursive;"><b>Instagram</b></a>
 
-      </div>
-  
-      <!-- Adding a search form  -->
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<nav class="navbar navbar-inverse" style="background-color:black;">
+  <div class="container-fluid">
+    <div class="navbar-header">
       <div class="col-sm-4 col-md-4 navbar-right">
-  
-        <form class="navbar-form" role="search" action="{% url 'search_results' %}">
-  
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search Article" name="article">
-            <div class="input-group-btn">
-              <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-            </div>
+            <form class="navbar-form" role="search" action="/search/">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search " name="search">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+              </div>
+            </form>
           </div>
-  
-        </form>
-      </div>
-      <!-- search form end -->
-  
-      <div class="col-sm-6 col-md-6">
-        {% if user.is_authenticated %}
+          <div class="col-sm-6 col-md-6">
+                {% if user.is_authenticated %}
+                        <a href="/logout" style="margin-left:1200px">Logout</a>
+                {% else %}
+                <li>
+                  <a class='btn btn-default' href="/accounts/register/">Login/Register</a>
+                </li>
+                {% endif %}
+              </div>
+            </div>
+            <div class="profiles">
+            <a href="/profile/{{user.id}}" style="color:black;"><button>PROFILE</button></a>  
+          <a href="/newprofile/" style="color:black;"><button>EDIT PROFILE</button></a>  
+          <a href="new/project"    style="color:black;"><button>POST PROJECT</button></a>
+            <!-- <a href="/profile/" style="color:purple;"  style="margin-left:10px;"><button>Edit Profile</button></a>  -->
+          </div>
+  </div>
+  <div class="upload_project">
+<h1 style="color:whitesmoke; margin-left:550px; font-size:75px;">AWARDS</h1>
+  </div>
+</nav>
+</body>
+</html>
 
-  
-        <ul>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
-                      <span class="caret"></span>
-                  </a>
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <a href="{%url 'welcome'%}">Home</a>
-              </li>
-
-              <li>
-                <a href="{%url 'prof_create'%}">Create profile</a>
-              </li>
-
-              <li>
-                <a href="{%url 'new-image'%}">Add a post</a>
-              </li>
-              <li>
-                <a href="/accounts/password/change">Change Password</a>
-              </li>
-              <li>
-                <a href="/logout">Logout</a>
-              </li>
-
-             <li>
-              <a href="{% url 'profile' %}">Profile</a>
-            </li>
-
-            </ul>
-          </li>
-        </ul>
-        
-        {% else %}
-        <li>
-          <a class='btn btn-default' href="/accounts/login">Login</a>
-        </li>
-  
-        {% endif %}
-      </div>
-  
-  
-    </div>
-  </nav>
+<style>
+body{
+      background-color:black;
+    }
+.profiles{
+    background-color:whitesmoke;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}    
+</style>
