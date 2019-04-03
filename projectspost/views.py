@@ -4,6 +4,7 @@ from .models import Project,Profile
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from .forms import NewProjectForm,NewProfileForm, VoteForm
+# from django.contrib.auth.decorators import login_required.
 # from rest_framework.response import Response
 # from rest_framework.views import APIView
 # from .serializer import ProjectSerializer, ProfileSerializer
@@ -40,44 +41,61 @@ def project(request,project_id):
     return render(request,'project.html',{'form':form,'project':project,'rating':rating})
 
 
+
 @login_required(login_url='/accounts/login/')
 def new_project(request):
     current_user = request.user
     if request.method == 'POST':
-        form = ProjectForm(request.POST, request.FILES)
+        form = NewProjectForm(request.POST, request.FILES)
         if form.is_valid():
             project = form.save(commit=False)
             project.profile = current_user
             project.save()
-        return redirect('indexPage')
+        return redirect('welcome')
 
     else:
-        form = ProjectForm()
+        form = NewProjectForm()
     return render(request, 'new_project.html', {"form": form})
 
 
+
 def vote_project(request, project_id):
-    project = Project.objects.get(id=project_id)
-    rating = round(((project.design + project.usability + project.content)/3),2)
+    # project = Project.objects.get(id=project_id)
+    # rating = round(((project.design + project.usability + project.content)/3),2)
+    # if request.method == 'POST':
+    #     form = VoteForm(request.POST)
+    #     if form.is_valid:
+    #         if project.design == 1:
+    #             project.design = int(request.POST['design'])
+    #         else:
+    #             project.design = (project.design + int(request.POST['design']))/2
+    #         if project.usability == 1:
+    #             project.usability = int(request.POST['usability'])
+    #         else:
+    #             project.usability = (project.design + int(request.POST['usability']))/2
+    #         if project.content == 1:
+    #             project.content = int(request.POST['content'])
+    #         else:
+    #             project.content = (project.design + int(request.POST['content']))/2
+    #         project.save()
+    # else:
+    #     form = VoteForm()
+    # return render(request,'vote.html',{'form':form,'project':project,'rating':rating})
+
+
+def create_prfle(request):
+    current_user=request.user
     if request.method == 'POST':
-        form = VoteForm(request.POST)
-        if form.is_valid:
-            if project.design == 1:
-                project.design = int(request.POST['design'])
-            else:
-                project.design = (project.design + int(request.POST['design']))/2
-            if project.usability == 1:
-                project.usability = int(request.POST['usability'])
-            else:
-                project.usability = (project.design + int(request.POST['usability']))/2
-            if project.content == 1:
-                project.content = int(request.POST['content'])
-            else:
-                project.content = (project.design + int(request.POST['content']))/2
-            project.save()
+        form =NewProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            profile=form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+        return redirect('profile')
     else:
-        form = VoteForm()
-    return render(request,'vote.html',{'form':form,'project':project,'rating':rating})
+        form=NewProfileForm()
+    return render(request,'profile-create.html',{"form":form})
+
 
 
 def profile(request):
@@ -91,6 +109,7 @@ def profile(request):
         profile = Profile.objects.get(profile=current_user)
 
     return render(request, 'profile.html',{'projects':projects,'profile':profile})
+
 
 def edit_profile(request):
     current_user = request.user
@@ -110,9 +129,9 @@ def search_results(request):
     if 'project' in request.GET and request.GET["project"]:
         search_term = request.GET.get("project")
         searched_projects = Project.search_by_title(search_term)
-        message = f"{search_term}"
+        # message = f"{search_term}"
 
-        return render(request, 'search.html',{"message":message,"projects": searched_projects})
+        return render(request, 'search.html',{"projects": searched_projects})
 
     else:
         message = "You haven't searched for any term"

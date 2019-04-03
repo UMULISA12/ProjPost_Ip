@@ -7,6 +7,7 @@
 <br>
 <div class="container">
   <body style="background-color:#FCFDFE; ">
+    
     <img src="{{profile.profile_photo.url}}" class="radius" class="img-responsive" alt="Image" style="width:100px; height:100px; border-radius:50%; float: right; margin-left:-500px">
     <br>
     <br>
@@ -26,26 +27,25 @@
   
 </div>
 <br>
+      <br><br><br><br><br>
+      <h1 style="text-align:center; color:beige;margin-left:50px; font-family:'Indie Flower', cursive;"><b>Your projects</b></h1>
+      <br>
+        <div class="row">
+          {% for project in projects %}
+
+          <div class="col-md-4">
+            <img  src="{{project.image.url}}" class="radius" alt="Project" class="img-responsive">
+            <style>
+              .radius{
+                height: 250px;
+                width: 250px;
+              }
+            </style>
+          </div>
+          {% endfor%}
+
+        </div>
 
 
-
-  
-  <p class="text-center" style="font-size:60px; color:beige; font-family:'Indie Flower', cursive;"><b>my projects</b></p>
-  <div class="row">
-    {% for photo in photos %}
-    <div class="col-md-6 container" >
-
-      <img src="{{photo.image.url}}" class="img-responsive" alt="Image" height="800px" height="800px" style="border:1px solid beige"><br><br>
-
-    </div>
-    {% empty %}
-    <h2 class="text-center">There are no photos yet</h2>
-
-    {% endfor %}
-  
-</div>
-
-</body>
 </div>
 {% endblock %}
-</div>
