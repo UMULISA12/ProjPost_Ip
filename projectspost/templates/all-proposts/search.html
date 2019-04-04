@@ -14,11 +14,15 @@
   <div class="row">
 
   {% if projects %}
+
     {% for project in projects %}
-      <div class="col-sm-6 col-md-3">
-        <a href="/project-detail/{{project.id}}">{{project.image}}</a>
+      <div class="col-md-3">
+        <img src="{{project.image.url}}" alt="Project" width="400px" height="400px"  style="border: 1px solid white; border-radius: 4px; padding: 5px;">
+        <a href="/project-detail/{{project.id}}">{{project.title}}</a>
       </div>
+
     {% endfor %}
+
   {% endif %}
   </div>
 </div>

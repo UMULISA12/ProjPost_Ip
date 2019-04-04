@@ -9,7 +9,7 @@ urlpatterns=[
     url(r'^projects/(\d+)',views.project,name ='projects'),
     url(r'^new/project$', views.new_project, name='new-project'),
 
-    url(r'^search/', views.search_results,name='search_results'),
+    url(r'^search/', views.search_results, name='search_results'),
     
     url(r'^create/profile$',views.create_prfle,name='profile_create'),
     url(r'^profile/',views.profile,name='profile'),
