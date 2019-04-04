@@ -71,14 +71,14 @@ def edit_profile(request):
 
 
 
-def profiledetails(request,profile_id):
-    try:
-        profile = Profile.objects.get(id=profile_id)
-    except ObjectDoesNotExist:
-        message = "You haven't searched for any term"
+# def profiledetails(request,profile_id):
+#     try:
+#         profile = Profile.objects.get(id=profile_id)
+#     except ObjectDoesNotExist:
+#         message = "You haven't searched for any term"
 
 
-    return render(request,"profiledetails.html",{"profile":profile})
+#     return render(request,"profiledetails.html",{"profile":profile})
 
 
 
@@ -94,20 +94,6 @@ def create_prfle(request):
     else:
         form=NewProfileForm()
     return render(request,'profile-create.html',{"form":form})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
