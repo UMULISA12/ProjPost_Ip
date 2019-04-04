@@ -29,21 +29,25 @@
 {% block content %}
 {{block.super}}
 <!-- <div class="container"> -->
-    <h1 style="text-align:center; font-family: 'Love Ya Like A Sister', cursive;"><b>Uploaded projects</b></h1>
-  
-
   <div class="row">
+    <img src="https://www.pngkey.com/png/full/129-1298357_open-upload-ui-icon.png" width="40px" height="40px" style="float:left; margin-right:10px; margin-top:5px; border-radius: 0 !important;" class="centered">
+    <h1 style="text-align:center; font-family: 'Love Ya Like A Sister', cursive; font-size:50px; text-shadow:2px 5px 2px grey;"><b>Uploaded projects</b></h1>
+  </div>
+
+  <div class="row" style="margin-left:15px; padding:50px;">
       
     {% for post in projects %}
     <div class="col-md-3" >
       
       <h3 class="text-center" style="font-family: 'Love Ya Like A Sister', cursive;" > {{post.title}}</h3>
-      <a href="{% url 'projects' post.id %}"><img src="{{post.image.url}}" alt="Project" width="400px" height="400px"></a>
+      <a href="{% url 'projects' post.id %}"><img src="{{post.image.url}}" alt="Project" width="400px" height="400px"  style="border: 1px solid white; border-radius: 4px; padding: 5px;"></a><br><br><br><br>
+
 
     </div>
     {% endfor %}
   </div>
   <br><br>
+  <footer style="text-align:center"> Copy right | 2018 | Alice UMULISA | WECODE | MORINGA SCHOOL </footer>
   
   <style>
   /* Three image containers (use 25% for four, and 50% for two, etc) */

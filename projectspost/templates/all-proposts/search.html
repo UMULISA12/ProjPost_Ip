@@ -1,40 +1,25 @@
 {%extends 'all-proposts/base.html'%}
 {% block content %}
-
-<br>
-<br>
-<br>
-<br>
-
 <div class="container">
-  <body style="background-color:#F2F3F4">
 
   <div class="row">
-    {% if profiles%}
-      <h2>Found {{ profiles|length }} of searched term {{message}}</h2>
+    {% if projects%}
+      <h2>Found {{ projects|length }} of searched term {{message}}</h2>
     {% else %}
-      <h2> Found 0 usernames for the search term {{message}}</h2>
+      <h2> Found 0 projects for the search term {{message}}</h2>
     {% endif %}
 
   </div>
 
   <div class="row">
 
-  {% if profiles %}
-    {% for profile in profiles %}
-      <div class="col-sm-6 col-md-6">
-        <div class="panel panel-default">
-          <div class="panel panel-header">
-            <a href="/profiledetails/{{profile.id}}"><h1>{{profile.user}}</h1></a>
+  {% if projects %}
+    {% for project in projects %}
+      <div class="col-sm-6 col-md-3">
+        <a href="/project-detail/{{project.id}}">{{project.title}}</a>
       </div>
-    </div>
-  </div>
-      <!-- <div class="col-sm-6 col-md-6">
-        <img src="{{profile.profile_photo.url}}" class="img-responsive" alt="Image">
-      </div> -->
     {% endfor %}
   {% endif %}
   </div>
-</body>
 </div>
 {% endblock %}
