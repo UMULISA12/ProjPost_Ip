@@ -26,7 +26,6 @@ def project(request,project_id):
 
 
 
-
 @login_required(login_url='/accounts/login/')
 def new_project(request):
     current_user = request.user
@@ -70,18 +69,6 @@ def edit_profile(request):
     return render(request,'edit_profile.html',{"form":form})
 
 
-
-# def profiledetails(request,profile_id):
-#     try:
-#         profile = Profile.objects.get(id=profile_id)
-#     except ObjectDoesNotExist:
-#         message = "You haven't searched for any term"
-
-
-#     return render(request,"profiledetails.html",{"profile":profile})
-
-
-
 def create_prfle(request):
     current_user=request.user
     if request.method == 'POST':
@@ -118,19 +105,7 @@ def view_project(request,project_id):
 
     except ObjectDoesNotExist:
         raise Http404()
-        # return render(request, 'no_project.html')
+       
 
     return render(request, 'project-detail.html', {'project':project})
 
-
-# class ProjectList(APIView):
-#     def get(self, request, format=None):
-#         all_project =Project.objects.all()
-#         serializers = ProjectSerializer(all_project, many=True)
-#         return Response(serializers.data)
-
-# class ProfileList(APIView):
-#     def get(self, request, format=None):
-#         all_profile =Profile.objects.all()
-#         serializers = ProfileSerializer(all_profile, many=True)
-#         return Response(serializers.data)
