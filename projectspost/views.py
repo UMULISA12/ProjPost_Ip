@@ -15,7 +15,6 @@ def welcome(request):
 
 def project(request,project_id):
     project = Project.objects.get(id = project_id)
-    rating = round(((project.design + project.usability + project.content)/3),2)
     if request.method == 'POST':
         form = VoteForm(request.POST)
         if form.is_valid:
@@ -23,7 +22,7 @@ def project(request,project_id):
             project.save()
     else:
         form = VoteForm()
-    return render(request,'project.html',{'form':form,'project':project,'rating':rating})
+    return render(request,'project.html',{'form':form,'project':project})
 
 
 
@@ -42,6 +41,7 @@ def new_project(request):
     else:
         form = NewProjectForm()
     return render(request, 'new_project.html', {"form": form})
+
 
 
 def profile(request):
