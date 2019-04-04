@@ -4,10 +4,7 @@ from .models import Project,Profile
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from .forms import NewProjectForm,NewProfileForm, VoteForm
-# from rest_framework.response import Response
-# from rest_framework.views import APIView
-# from .serializer import ProjectSerializer, ProfileSerializer
-# Create your views here.
+
 
 @login_required(login_url='/accounts/login/')
 def welcome(request):
