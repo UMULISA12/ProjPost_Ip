@@ -4,8 +4,9 @@
 {{block.super}}
 
 <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet">
 <br>
-<div class="container">
+
   <body style="background-color:#FCFDFE; ">
     <img src="{{profile.profile_photo.url}}" class="radius" class="img-responsive" alt="Image" style="width:100px; height:100px; border-radius:50%; float: right; margin-left:-500px">
     <br>
@@ -29,14 +30,15 @@
 
 
 
-  
+<div class="container">
   <p class="text-center" style="font-size:60px; color:black; font-family:'Indie Flower', cursive;"><b>my projects</b></p>
+
   <div class="row">
       {% for post in projects %}
-      <div class="col-xs-6 col-sm-8 col-md-4 col-lg-4 ">
+      <div class="col-md-6">
         
-        <h3 class="centered" style="color:black;"> {{post.title}}</h3>
-        <a href="{% url 'projects' post.id %}"><img src="{{post.image.url}}" class="img-responsive" alt="Project" width="400px" height="400px"></a>
+        <h3 class="text-centered" style="color:black; font-family: 'Love Ya Like A Sister', cursive;"> {{post.title}}</h3>
+        <a href="{% url 'projects' post.id %}"><img src="{{post.image.url}}" alt="Project" width="400px" height="400px"></a>
   
       </div>
       {% endfor %}
