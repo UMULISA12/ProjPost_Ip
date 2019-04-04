@@ -36,8 +36,8 @@ class Project(models.Model):
         return projects_title
 
 class Profile(models.Model):
-    photo = models.ImageField(upload_to = 'profile/', null = True)
-    profile = models.ForeignKey(User,on_delete=models.CASCADE,null = True)
+    profile_photo = models.ImageField(upload_to = 'profile/', null = True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null = True)
     bio = models.TextField(max_length = 100, null = True)
     contact = models.IntegerField(null = True)
 

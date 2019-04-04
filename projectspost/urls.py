@@ -8,9 +8,12 @@ urlpatterns=[
     url(r'^$',views.welcome,name='welcome'),
     url(r'^projects/(\d+)',views.project,name ='projects'),
     url(r'^new/project$', views.new_project, name='new-project'),
-    url(r'^create/profile$',views.create_prfle,name='prof_create'),
-    url(r'^profile/',views.profile,name = 'profile'),
-    url(r'^edit/profile/$',views.edit_profile,name = 'edit-profile'),
+    
+    url(r'^create/profile$',views.create_prfle,name='profile_create'),
+    url(r'^profile/',views.profile,name='profile'),
+    url(r'^profiledetails/(\d+)',views.profiledetails,name ='profiledetails'),
+
+    url(r'^edit/profile$',views.edit_profile,name='edit-profile'),
     url(r'^search/', views.search_results, name='search_results'),
     url(r'^project-detail/(\d+)',views.search_project,name = 'project-detail'),
     # url(r'^project-vote/(\d+)',views.vote_project,name = 'project-vote'),

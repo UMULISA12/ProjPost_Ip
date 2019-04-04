@@ -1,4 +1,26 @@
-<img src="https://images.pexels.com/photos/56759/pexels-photo-56759.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+<link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet">
+<div class="cont">
+<img src="https://www.punch-creative.co.uk/wp-content/uploads/2017/09/punch-leeds-fraser-projects-header.jpg" height="300px;" width="100%">
+<div class="centered" style="font-size:80px; font-family: 'Love Ya Like A Sister', cursive;"><b>Upload your projects to be awarded</b></div>
+</div>
+<style>
+
+.cont {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+</style>
+
+
+
 {%extends 'all-proposts/base.html'%}
 {% load bootstrap3 %}
 {% load staticfiles %}
@@ -6,23 +28,42 @@
 
 {% block content %}
 {{block.super}}
-<div class="container">
-  <div class="row">
+<!-- <div class="container"> -->
+    <h1 style="text-align:center; font-family: 'Love Ya Like A Sister', cursive;"><b>Uploaded projects</b></h1>
+  
 
   <div class="row">
+      
     {% for post in projects %}
-    <div class="col-xs-6 col-sm-8 col-md-4 col-lg-4 ">
-      <h3 class="text-center" style="color:beige;"> {{post.title}}</h3>
-      <a href="{% url 'projects' post.id %}"><img src="{{post.image.url}}" class="img-responsive" alt="Project" width="250px" height="250px"></a>
+    <div class="col-md-3" >
+      
+      <h3 class="text-center" style="font-family: 'Love Ya Like A Sister', cursive;" > {{post.title}}</h3>
+      <a href="{% url 'projects' post.id %}"><img src="{{post.image.url}}" alt="Project" width="400px" height="400px"></a>
 
     </div>
     {% endfor %}
   </div>
   <br><br>
   
-</div>
+  <style>
+  /* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+  
+  </style>
 
 
-</div>
+
+<!-- </div> -->
 
 {% endblock %}

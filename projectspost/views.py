@@ -84,17 +84,17 @@ def new_project(request):
 #     return render(request,'vote.html',{'form':form,'project':project,'rating':rating})
 
 
+
+
 def profile(request):
     current_user=request.user
-    photos=Image.objects.filter(profile=current_user)
+    projects=Project.objects.filter(profile=current_user)
     try:
         profile = Profile.objects.get(user=current_user)
     except ObjectDoesNotExist:
-        return redirect('create-profile')
+        return redirect('profile_create')
 
-    return render(request,'profile.html',{"photos":photos,"profile":profile})
-
-
+    return render(request,'profile.html',{"projects":projects,"profile":profile})
 
 
 
@@ -110,6 +110,42 @@ def edit_profile(request):
     else:
         form=NewProfileForm()
     return render(request,'edit_profile.html',{"form":form})
+
+
+
+def profiledetails(request,profile_id):
+    try:
+        profile = Profile.objects.get(id=profile_id)
+    except ObjectDoesNotExist:
+        message = "You haven't searched for any term"
+
+
+    return render(request,"profiledetails.html",{"profile":profile})
+
+
+def create_prfle(request):
+    current_user=request.user
+    if request.method == 'POST':
+        form =NewProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            profile=form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+        return redirect('profile')
+    else:
+        form=NewProfileForm()
+    return render(request,'profile-create.html',{"form":form})
+
+
+
+
+
+
+
+
+
+
+
 
 
 
