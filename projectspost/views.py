@@ -27,7 +27,7 @@ def project(request,project_id):
         form = VoteForm(request.POST)
         if form.is_valid:
            
-            project.save(
+            project.save()
     else:
         form = VoteForm()
     return render(request,'project.html',{'form':form,'project':project})
