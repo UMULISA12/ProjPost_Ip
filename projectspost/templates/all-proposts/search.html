@@ -17,8 +17,8 @@
 
     {% for project in projects %}
       <div class="col-md-3">
-          <a href="{% url 'projects' post.id %}"><img src="{{post.image.url}}" alt="Project" width="400px" height="400px"  style="border: 1px solid white; border-radius: 4px; padding: 5px;"></a>
-        <!-- <a href="/project-detail/{{project.id}}">{{project.title}}</a> -->
+    <img src="{{project.image.url}}" alt="Project" width="400px" height="400px"  style="border: 1px solid white; border-radius: 4px; padding: 5px;">
+   
       </div>
 
     {% endfor %}
