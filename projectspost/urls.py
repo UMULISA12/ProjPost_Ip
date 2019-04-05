@@ -18,8 +18,9 @@ urlpatterns=[
     url(r'^project-detail/(\d+)',views.view_project,name = 'project-detail'),
 
     url(r'^api/project/$', views.ProjectList.as_view()),
-    url(r'^api/profile/$', views.ProfileList.as_view()),
     
+    url(r'^api/profile/$', views.ProfileList.as_view()),
+
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

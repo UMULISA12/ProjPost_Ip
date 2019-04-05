@@ -11,6 +11,7 @@ from .models import  Project
 
 from .serializer import ProjectSerializer,ProfileSerializer
 from rest_framework import status
+from .permissions import IsAdminOrReadOnly
 
 
 @login_required(login_url='/accounts/login/')
@@ -117,17 +118,23 @@ def view_project(request,project_id):
 
 
 class ProjectList(APIView):
-    # def get(self, request, format=None):
-    #     all_merch = Project.objects.all()
-    #     serializers = ProjectSerializer(all_merch, many=True)
-    #     return Response(serializers.data)
+
+    def get(self, request, format=None):
+        all_merch = Project.objects.all()
+        serializers = ProjectSerializer(all_merch, many=True)
+        return Response(serializers.data)
 
     def post(self, request, format=None):
         serializers = ProjectSerializer(data=request.data)
+       
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+        permission_classes = (IsAdminOrReadOnly,)
+
+
+
 
 
 class ProfileList(APIView):
@@ -135,4 +142,13 @@ class ProfileList(APIView):
         all_merch = Profile.objects.all()
         serializers = ProfileSerializer(all_merch, many=True)
         return Response(serializers.data)
+
+    def post(self, request, format=None):
+        serializers = ProfileSerializer(data=request.data)
+       
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+        permission_classes = (IsAdminOrReadOnly,)
 
