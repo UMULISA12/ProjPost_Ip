@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'bootstrap3',
     'projectspost.apps.ProjectspostConfig',
     'django.contrib.admin',

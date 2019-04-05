@@ -5,6 +5,13 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from .forms import NewProjectForm,NewProfileForm, VoteForm
 
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import  Project
+
+from .serializer import ProjectSerializer,ProfileSerializer
+from rest_framework import status
+
 
 @login_required(login_url='/accounts/login/')
 def welcome(request):
@@ -89,9 +96,9 @@ def search_results(request):
     if 'project' in request.GET and request.GET["project"]:
         search_term = request.GET.get("project")
         searched_projects = Project.search_by_title(search_term)
-        message = f"{search_term}"
+        # message = f"{search_term}"
 
-        return render(request, 'all-proposts/search.html',{"message":message,"projects": searched_projects})
+        return render(request, 'all-proposts/search.html',{"projects": searched_projects})
 
     else:
         message = "You haven't searched for any term"
@@ -107,4 +114,25 @@ def view_project(request,project_id):
        
 
     return render(request, 'project-detail.html', {'project':project})
+
+
+class ProjectList(APIView):
+    # def get(self, request, format=None):
+    #     all_merch = Project.objects.all()
+    #     serializers = ProjectSerializer(all_merch, many=True)
+    #     return Response(serializers.data)
+
+    def post(self, request, format=None):
+        serializers = ProjectSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_merch = Profile.objects.all()
+        serializers = ProfileSerializer(all_merch, many=True)
+        return Response(serializers.data)
 
